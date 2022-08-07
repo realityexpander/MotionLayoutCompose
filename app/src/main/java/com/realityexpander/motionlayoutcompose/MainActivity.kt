@@ -52,12 +52,15 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun ProfileHeader(progress: Float) {
     val context = LocalContext.current
+
+    // Load the motionScene raw JSON string from the assets folder
     val motionScene = remember {
         context.resources
             .openRawResource(R.raw.motion_scene)
             .readBytes()
             .decodeToString()
     }
+
     MotionLayout(
         motionScene = MotionScene(content = motionScene),
         progress = progress,
@@ -71,7 +74,7 @@ fun ProfileHeader(progress: Float) {
                 .layoutId("box")
         )
         Image(
-            painter = painterResource(id = R.drawable.picture),
+            painter = painterResource(id = R.drawable.chris),
             contentDescription = null,
             modifier = Modifier
                 .clip(CircleShape)
@@ -83,7 +86,7 @@ fun ProfileHeader(progress: Float) {
                 .layoutId("profile_pic")
         )
         Text(
-            text = "Philipp Lackner",
+            text = "Chris Athanas",
             fontSize = 24.sp,
             modifier = Modifier.layoutId("username"),
             color = properties.value.color("background")
